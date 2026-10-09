@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Günce — Gizlilik Politikası</title>
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 18px 64px;
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #f7f8f4; color: #1c2320; max-width: 760px; margin-inline: auto;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #141a17; color: #e6ebe7; }
+    h1, h2 { color: #a9dcbf; }
+    .card { border-color: #2a3530; }
+    a { color: #8fd0a8; }
+    th { background: #1d2622; }
+  }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  h2 { font-size: 18px; margin: 30px 0 8px; }
+  .up { color: #5f7a6c; font-size: 14px; margin-bottom: 24px; }
+  .card { background: #fff; border: 1px solid #dde4de; border-radius: 14px; padding: 16px 18px; margin: 14px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: start; padding: 8px 10px; border-bottom: 1px solid #e4e9e4; vertical-align: top; }
+  th { background: #eef3ee; }
+  ul { margin: 8px 0; padding-inline-start: 22px; }
+  li { margin: 4px 0; }
+  .muted { color: #5f7a6c; font-size: 13.5px; }
+  .toc { columns: 2; font-size: 14px; }
+  .toc li { margin: 2px 0; }
+</style>
+</head>
+<body>
+<h1>Günce — Gizlilik Politikası</h1>
+<p class="up">Son güncelleme: 6 Ekim 2026 · Sürüm 2.1.0 · Geliştirici: Günce Ekibi · gunce.destek@gmail.com</p>
+
+<div class="card">
+  <p><strong>Özet:</strong> Günce, görevlerini, odak seanslarını ve bahçeni <strong>cihazında</strong> saklayan bir üretkenlik ve alışkanlık uygulamasıdır. Misafir modunda <strong>hiçbir veri sunucuya gönderilmez</strong>. Hesap açarsan yalnızca e-posta ve şifren (kimlik doğrulama) ile sosyal özellikler için gereken minimum veri Supabase altyapımızda saklanır. Analitik, izleme, konum, kişiler, reklam kimliği ve gerçek para ile satın alma <strong>kullanılmaz</strong>.</p>
+</div>
+
+<div class="card">
+  <strong>İçindekiler</strong>
+  <ol class="toc">
+    <li>Giriş ve kapsam</li>
+    <li>Topladığımız veriler</li>
+    <li>Verileri kullanma amaçları</li>
+    <li>Hukuki dayanaklar</li>
+    <li>Veri işleyiciler ve paylaşım</li>
+    <li>Cihazda saklanan veriler</li>
+    <li>Reklamlar</li>
+    <li>Bildirimler</li>
+    <li>Satın alma ve ödemeler</li>
+    <li>Analitik, çökme raporları ve izleme</li>
+    <li>Çocukların gizliliği</li>
+    <li>Veri saklama süreleri</li>
+    <li>Güvenlik</li>
+    <li>Haklarınız</li>
+    <li>Hesap silme</li>
+    <li>Uluslararası veri aktarımı</li>
+    <li>Değişiklikler ve iletişim</li>
+  </ol>
+</div>
+
+<h2>1. Giriş ve kapsam</h2>
+<p>Bu politika, Günce mobil uygulamasının (Android) ve ilişkili web kaynaklarının hangi verileri işlediğini, neden işlediğini ve haklarınızı açıklar. Günce iki modda çalışır:</p>
+<ul>
+  <li><strong>Misafir modu (varsayılan):</strong> Tüm uygulama verisi yalnızca cihazınızda saklanır. Hesap açmazsanız hiçbir veri sunucuya gönderilmez.</li>
+  <li><strong>Hesap modu (isteğe bağlı):</strong> E-posta + şifre ile giriş yaparsanız yalnızca sosyal özellikler (arkadaşlar, bülten, liderlik) için gereken minimum veri sunucumuzda tutulur.</li>
+</ul>
+
+<h2>2. Topladığımız veriler</h2>
+<table>
+  <tr><th>Veri</th><th>Neden</th><th>Nerede?</th></tr>
+  <tr><td>E-posta + şifre</td><td>Hesap oluşturma ve giriş (yalnızca hesap açarsan)</td><td>Supabase Auth</td></tr>
+  <tr><td>Kullanıcı adı, görünen ad, emoji avatar, bio</td><td>Profil, arkadaş arama, liderlik, bülten</td><td>Supabase Postgres</td></tr>
+  <tr><td>Görevler, hedefler, odak seansları, bahçe/bitkiler, XP, coin, elmas, günlük seri, rozetler, günlük/ajanda kayıtları</td><td>Uygulamanın temel işlevi</td><td><strong>Yalnızca cihazın (localStorage)</strong> — sunucuya gönderilmez</td></tr>
+  <tr><td>Sosyal etkinlikler (takip, aktivite akışı, beğeni, tebrik, hediye, liderlik XP'si)</td><td>Bülten ve sosyal özellikler (yalnızca hesap açarsan)</td><td>Supabase Postgres</td></tr>
+  <tr><td>Geri bildirim mesajı (sen yazarsan) + uygulama sürümü, dil, tema</td><td>Destek talebini anlamak</td><td>E-posta ile bize iletilir</td></tr>
+</table>
+<p class="muted">Toplanmayanlar: konum, kişiler, fotoğraf, mikrofon, kamera, sağlık/fitness verisi, reklam kimliği, analitik olayları, çökme kayıtları, ödeme bilgisi.</p>
+
+<h2>3. Verileri kullanma amaçları</h2>
+<ul>
+  <li>Uygulamanın çalışması: görev, odak, bahçe, seri ve ilerleme takibi (cihazda).</li>
+  <li>Hesap kimlik doğrulaması ve profil gösterimi (sunucuda, hesap modunda).</li>
+  <li>Sosyal özellikler: arkadaş ekleme, aktivite akışı, hediye, beğeni, liderlik sıralaması.</li>
+  <li>Yerel hatırlatıcı bildirimleri (cihazda, iznine bağlı).</li>
+  <li>Destek taleplerine yanıt verme (e-posta).</li>
+</ul>
+<p>Verileriniz <strong>profilleme, otomatik karar, veri satışı veya reklam amaçlı hedefleme için kullanılmaz</strong>.</p>
+
+<h2>4. Hukuki dayanaklar</h2>
+<ul>
+  <li><strong>Sözleşmenin ifası:</strong> hesap özelliklerinin sağlanması (kimlik doğrulama, sosyal veriler).</li>
+  <li><strong>Açık rıza:</strong> bildirim izni (cihaz onayı), misafir modu istediğiniz an seçilebilir.</li>
+  <li><strong>Meşru menfaat:</strong> uygulama güvenliği ve kötüye kullanım önleme (ör. aynı hesabın kısıtlamalarını aşma girişimlerinin engellenmesi).</li>
+</ul>
+<p class="muted">6698 sayılı KVKK ve GDPR kapsamında veri sorumlusu: Günce Ekibi (iletişim: gunce.destek@gmail.com).</p>
+
+<h2>5. Veri işleyiciler ve paylaşım</h2>
+<table>
+  <tr><th>İşleyici</th><th>Amacı</th><th>Paylaşılan veri</th></tr>
+  <tr><td>Supabase (supabase.co)</td><td>Kimlik doğrulama ve sosyal veri tabanı</td><td>E-posta, şifre özeti (hash), profil alanları, sosyal etkinlikler</td></tr>
+  <tr><td>Google Play / AdMob SDK</td><td>Teknik olarak gömülü, <strong>varsayılan kapalı</strong> (bkz. §7)</td><td>Kapalıyken: hiçbir veri</td></tr>
+</table>
+<ul>
+  <li>Sosyal özelliklerde diğer kullanıcılara görünenler: kullanıcı adı, görünen ad, avatar emojisi ve paylaştığın aktiviteler. <strong>E-posta asla gösterilmez.</strong></li>
+  <li>Veri satışı, reklam amaçlı paylaşım ve üçüncü taraf pazarlaması yapılmaz. Kanuni zorunluluk dışında veri açıklanmaz.</li>
+</ul>
+
+<h2>6. Cihazda saklanan veriler</h2>
+<p>Temel verileriniz (görevler, bahçe, XP/coin/elmas bakiyeleri, seri, günlük kayıtları, ayarlar) cihazın <code>localStorage</code> alanında tutulur. Bu veriler:</p>
+<ul>
+  <li>Sunucuya hiçbir koşulda gönderilmez (sosyal akışa <em>siz</em> paylaşırsanız hariç — örn. görev tamamlanma etkinliği).</li>
+  <li>Uygulamayı silmenizle birlikte cihazdan da silinir.</li>
+  <li>Cihaz yedeğinizde (Android yedeklemesi) cihaz sahibi olarak sizinle taşınabilir.</li>
+</ul>
+
+<h2>7. Reklamlar</h2>
+<ul>
+  <li>Google Mobile Ads SDK'sı (AdMob) uygulama paketinde teknik olarak mevcuttur ancak <strong>varsayılan olarak tamamen kapalıdır</strong> (derleme anahtarı <code>VITE_ADS_ENABLED=false</code>).</li>
+  <li>Reklam kimliği izni (<code>AD_ID</code>) paketten kaldırılmıştır; SDK kapalıyken hiçbir reklam kimliği, reklam verisi veya cihaz sinyali toplanmaz/gönderilmez.</li>
+  <li>Reklamlar ileride etkinleştirilirse, bu politika <strong>yayına alınmadan önce</strong> güncellenecek, <code>AD_ID</code> izni yeniden eklenerek Play Console Data Safety formu eşgüncellenecektir.</li>
+</ul>
+
+<h2>8. Bildirimler</h2>
+<ul>
+  <li>Bildirimler <strong>yalnızca yerel hatırlatıcılardır</strong>: görev zamanları ve günlük kapanış hatırlatmaları cihazda zamanlanır, cihazda gösterilir.</li>
+  <li><strong>Push bildirim sistemi kullanılmaz:</strong> cihaz bildirim token'ı toplanmaz ve sunucuya gönderilmez.</li>
+  <li>Bildirim izni tamamen isteğe bağlıdır; reddederseniz uygulamanın diğer tüm özellikleri çalışmaya devam eder.</li>
+</ul>
+<p class="muted">Uygulamanın istediği izinler (Play'in izin raporunda göründüğü şekliyle): <code>INTERNET</code> (sunucu iletişimi, hesap modu), <code>POST_NOTIFICATIONS</code> + <code>SCHEDULE_EXACT_ALARM</code> + <code>RECEIVE_BOOT_COMPLETED</code> + <code>WAKE_LOCK</code> (yerel hatırlatıcıların zamanlanması ve cihaz yeniden başladıktan sonra sürmesi), <code>ACCESS_NETWORK_STATE</code>. Reklam kimliği izni (<code>AD_ID</code>) ve satın alma izni (<code>BILLING</code>) uygulama paketinden <strong>kaldırılmıştır</strong>; gömülü AdMob SDK'nın getirdiği Privacy Sandbox erişim izinleri (<code>ACCESS_ADSERVICES_*</code>) SDK kapalıyken hiçbir veriye erişmez.</p>
+
+<h2>9. Satın alma ve ödemeler</h2>
+<ul>
+  <li>Günce'de <strong>gerçek para ile satın alma bulunmaz</strong>; Google Play Billing entegrasyonu yoktur, ödeme bilgisi istenmez ve saklanmaz.</li>
+  <li>Mağazadaki tüm ürünler (bitkiler, sandıklar, temalar, profiller) uygulama içinde kazanılan <strong>coin ve elmasla</strong> alınır — gerçek para değeri yoktur, başka bir değere çevrilemez.</li>
+  <li>"Günce Plus" aboneliği 2.1.0 itibarıyla <strong>kaldırılmıştır</strong>; ücretli üyelik/abonelik yoktur.</li>
+</ul>
+
+<h2>10. Analitik, çökme raporları ve izleme</h2>
+<ul>
+  <li><strong>Analitik SDK yok</strong>: Google Analytics, Firebase Analytics, Mixpanel, Amplitude vb. kullanılmaz.</li>
+  <li><strong>Çökme raporlama yok</strong>: Firebase Crashlytics, Sentry vb. entegre değildir.</li>
+  <li><strong>İzleme yok</strong>: cihazlar arası takip, parmak izi veya reklam kimliği okuma yapılmaz.</li>
+</ul>
+
+<h2>11. Çocukların gizliliği</h2>
+<p>Günce 13 yaş altındaki çocuklara yönelik değildir ve 13 yaş altındaki kullanıcılardan bilinçli olarak veri toplamaz. 13 yaş altında olduğunuzu fark edersek hesap ve ilişkili sunucu verilerini sileriz. Ebeveynler bu konuda <strong>gunce.destek@gmail.com</strong> üzerinden bize ulaşabilir.</p>
+
+<h2>12. Veri saklama süreleri</h2>
+<ul>
+  <li><strong>Cihaz verisi:</strong> uygulamayı silene kadar (cihazınızda).</li>
+  <li><strong>Sunucu verisi (hesap modu):</strong> hesabınız aktif olduğu sürece. Hesap silindiğinde profil, sosyal etkinlikler ve ilişkili satırlar <strong>gerçekten silinir</strong> (bkz. §15).</li>
+  <li><strong>Destek e-postaları:</strong> talebin kapanmasından itibaren makul bir süre (en fazla 12 ay) sonra silinir.</li>
+  <li><strong>Kimlik doğrulama kayıtları:</strong> hesap silme işlemiyle birlikte silinir.</li>
+</ul>
+
+<h2>13. Güvenlik</h2>
+<ul>
+  <li>Sunucu iletişimi <strong>TLS ile şifrelenir</strong> (HTTPS).</li>
+  <li>Şifreler Supabase Auth tarafından güvenli şekilde saklanır (şifrenin kendisi bize okunamaz şekilde işlenir).</li>
+  <li>Sunucu tablosu erişimi satır bazlı güvenlik kurallarıyla (RLS) kısıtlanır; bir kullanıcı yalnızca kendi ve herkese açık sosyal verilerine erişebilir.</li>
+  <li>Cihaz verisi uygulama korumalı alanındadır; ancak cihaz kaybolma/kopyalanma riskine karşı cihaz kilidinizi kullanmanızı öneririz.</li>
+</ul>
+
+<h2>14. Haklarınız</h2>
+<p>KVKK m.11 ve GDPR kapsamında verilerinize ilişkin şu haklara sahipsiniz:</p>
+<ul>
+  <li>Erişim — hangi verilerinizin işlendiğini öğrenme</li>
+  <li>Düzeltme — yanlış veya eksik verilerin güncellenmesi</li>
+  <li>Silme — verilerinizin silinmesi (bkz. §15)</li>
+  <li>İşleme itiraz ve rızanın geri alınması</li>
+  <li>Veri taşınabilirliği talebi</li>
+</ul>
+<p>Talepler için <strong>gunce.destek@gmail.com</strong> adresine yazmanız yeterlidir. Misafir modundaki tüm veriniz cihazınızda olduğundan, uygulamayı silerek tümüne kendiniz erişebilir/silebilirsiniz.</p>
+
+<h2>15. Hesap silme</h2>
+<ul>
+  <li>Uygulama içi: <strong>Ayarlar → Hesap → Hesabı sil</strong>. Bu işlem Supabase Auth hesabını ve sunucudaki profilini, sosyal etkinliklerini ve ilişkili verilerini <strong>gerçekten siler</strong> (geri alınamaz).</li>
+  <li>Web kaynağı: <a href="account-deletion.html">Günce Hesap Silme</a> sayfası.</li>
+  <li>E-posta ile talep: <strong>gunce.destek@gmail.com</strong> — en geç 30 gün içinde silme tamamlanır ve size bilgi verilir.</li>
+  <li>Misafir kullanıcılar hesapsızdır; silinecek sunucu verisi yoktur, uygulamayı silmeniz yeterlidir.</li>
+</ul>
+
+<h2>16. Uluslararası veri aktarımı</h2>
+<p>Hesap modunda veriler Supabase altyapısında (varsayılan bölge: ABD veya kurulumda seçilen AB bölgesi) barındırılır. Türkiye dışına aktarımda KVKK ve GDPR aktarım kurallarına uygun şifreli aktarım kullanılır. Misafir modunda veri aktarımı <strong>hiç yapılmaz</strong>.</p>
+
+<h2>17. Değişiklikler ve iletişim</h2>
+<p>Bu politika uygulamada yapılan gerçek değişikliklerle güncellenir; önemli değişikliklerde uygulama içi bildirim yapılır ve sayfanın üstündeki "son güncelleme" tarihi değişir. Politikayla ilgili sorularınız için: <strong>gunce.destek@gmail.com</strong></p>
+
+<p class="muted">Günce Ekibi · gunce.destek@gmail.com · Bu sayfa uygulama paketiyle birlikte (public/privacy-policy.html) ve web'de yayınlanır.</p>
+</body>
+</html>
