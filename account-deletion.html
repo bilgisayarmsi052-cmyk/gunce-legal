@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Günce — Hesap Silme</title>
+<meta name="description" content="Günce hesabınızı ve sunucudaki tüm verilerinizi kalıcı olarak silin." />
+<style>
+  /* Günce tasarım dili: sıcak yeşil, yumuşak köşeler, sakin yüzeyler */
+  :root {
+    --green: #15803d;
+    --green-deep: #166534;
+    --bg: #f6f7f4;
+    --surface: #ffffff;
+    --text: #1f2a24;
+    --text-2: #5c6b62;
+    --border: #e3e7e1;
+    --error: #b3261e;
+    --ok: #166534;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 24px 16px 48px; }
+  .logo {
+    width: 64px; height: 64px; border-radius: 18px;
+    background: linear-gradient(135deg, #22c55e, #15803d);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; margin: 8px auto 12px;
+    box-shadow: 0 6px 18px -6px rgba(21, 128, 61, 0.45);
+  }
+  h1 { font-size: 24px; margin: 0 0 4px; text-align: center; letter-spacing: -0.01em; }
+  .brand { text-align: center; color: var(--text-2); font-size: 13px; margin-bottom: 24px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(27, 42, 32, 0.05);
+  }
+  h2 { font-size: 16px; margin: 0 0 10px; }
+  p { margin: 0 0 10px; font-size: 14px; color: var(--text-2); }
+  ul { margin: 0 0 10px; padding-left: 20px; }
+  li { font-size: 14px; color: var(--text-2); margin-bottom: 4px; }
+  label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 6px; }
+  input {
+    width: 100%; padding: 12px 14px; font-size: 15px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: #fbfcfa; color: var(--text); outline: none;
+  }
+  input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.12); }
+  button {
+    width: 100%; margin-top: 18px; padding: 14px 16px; font-size: 15px; font-weight: 700;
+    color: #fff; background: var(--green); border: none; border-radius: 12px; cursor: pointer;
+  }
+  button:hover { background: var(--green-deep); }
+  button:disabled { opacity: 0.6; cursor: wait; }
+  .msg { display: none; margin-top: 14px; padding: 12px 14px; border-radius: 12px; font-size: 14px; }
+  .msg.error { display: block; background: #fdecea; color: var(--error); }
+  .msg.okay { display: block; background: #e8f3ec; color: var(--ok); }
+  .support { text-align: center; font-size: 14px; color: var(--text-2); }
+  .support a { color: var(--green); font-weight: 600; text-decoration: none; }
+  .support a:hover { text-decoration: underline; }
+  footer { text-align: center; font-size: 12px; color: #93a099; margin-top: 28px; }
+  a.back { color: var(--green); font-weight: 600; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo" aria-hidden="true">🌿</div>
+  <h1>Hesabını Sil</h1>
+  <div class="brand">Günce · Hesap Silme Sayfası</div>
+
+  <div class="card">
+    <h2>Hesabını silmek ne yapar?</h2>
+    <p>Bu işlem <strong>geri alınamaz</strong>. Hesabın doğrulandıktan sonra sunucudaki
+       tüm verilerin kalıcı olarak silinir:</p>
+    <ul>
+      <li>Profilin (kullanıcı adı, görünen ad, avatar)</li>
+      <li>İlerlemen (görevler, XP, coin, elmas, günlük serin, rozetler)</li>
+      <li>Bahçen (bitkiler, temalar, hasat kayıtları)</li>
+      <li>Sosyal verilerin (takipler, gönderdiğin ve aldığın hediyeler,
+          beğeniler, tebrikler, bildirimler, Bülten aktiviteleri)</li>
+      <li>Mağaza/envanter kayıtların (coin, elmas, ürünler)</li>
+    </ul>
+    <p>Cihazındaki yerel veriler uygulama kaldırıldığında silinir.
+       Google Play aboneliğin otomatik İPTAL OLMAZ — iptal için:
+       Play Store → Ödemeler ve abonelikler. Google Play'in kendi finansal
+       kayıtları Google altyapısında saklanır; bunlar Günce sunucusunda tutulmaz.</p>
+  </div>
+
+  <div class="card">
+    <h2>Silme talebi oluştur</h2>
+    <p>Hesabının gerçekten sana ait olduğunu doğrulamak için e-posta ve şifrenle
+       giriş yapman gerekir. Giriş başarılı olursa silme talebin anında işlenir.</p>
+
+    <form id="deleteForm" novalidate>
+      <label for="email">E-posta adresi</label>
+      <input id="email" name="email" type="email" autocomplete="email"
+             inputmode="email" required placeholder="ornek@eposta.com" />
+
+      <label for="password">Şifre</label>
+      <input id="password" name="password" type="password"
+             autocomplete="current-password" required placeholder="••••••••" />
+
+      <button id="submitBtn" type="submit">Hesap silme talebi gönder</button>
+    </form>
+
+    <div id="err" class="msg error" role="alert"></div>
+    <div id="okay" class="msg okay" role="status"></div>
+  </div>
+
+  <div class="card">
+    <h2>Otomatik silme çalışmıyorsa</h2>
+    <p>Teknik bir sorun nedeniyle silme tamamlanamazsa bize yaz; talebin en geç
+       7 gün içinde işlenir:</p>
+    <p class="support">
+      <a href="mailto:gunce.destek@gmail.com?subject=Hesap%20Silme%20Talebi">gunce.destek@gmail.com</a>
+    </p>
+  </div>
+
+  <footer>
+    Günce Gizlilik Politikası: uygulama içi <em>Ayarlar → Gizlilik Politikası</em><br />
+    <a class="back" href="privacy-policy.md">Gizlilik Politikası (metin)</a>
+  </footer>
+</div>
+
+<script type="module">
+  /* ------------------------------------------------------------------
+   * GERÇEK silme akışı — sahte "silindi" mesajı YOK:
+   *   1) supabase.auth.signInWithPassword → hesap sahipliği doğrulanır
+   *   2) POST /functions/v1/delete-account (Bearer JWT)
+   *      → edge function auth.admin.deleteUser(uid) çalıştırır;
+   *        0001/0002 FK cascade'leri tüm veriyi temizler.
+   *   3) Yalnızca 200 {ok:true} durumunda başarı gösterilir.
+   * Function deploy edilmemişse DÜRÜST hata + e-posta akışı önerilir.
+   * NOT: Buradaki anahtar PUBLIC anon key'dir (RLS ile korunur; gizli
+   * değildir, uygulama paketinde de bulunur). Service-role key ASLA
+   * bu sayfaya konulmaz.
+   * ------------------------------------------------------------------ */
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+  const SUPABASE_URL = 'https://sqbtruahzosvklepvqjw.supabase.co'
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNxYnRydWFoem9zdmtsZXB2cWp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA5Njc4MjYsImV4cCI6MjEwNjU0MzgyNn0.BCajPccmDtRxVwHiyS1R7f6FYXeKM96LSTNSa24sNxE'
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  const form = document.getElementById('deleteForm')
+  const btn = document.getElementById('submitBtn')
+  const err = document.getElementById('err')
+  const okay = document.getElementById('okay')
+
+  function showErr(text) { err.textContent = text; err.classList.add('error'); okay.classList.remove('okay') }
+  function showOkay(text) { okay.textContent = text; okay.classList.add('okay'); err.classList.remove('error') }
+  function resetMsgs() { err.classList.remove('error'); okay.classList.remove('okay') }
+
+  const TR = {
+    fillBoth: 'Lütfen e-posta ve şifreni gir.',
+    badCreds: 'E-posta veya şifre hatalı. Hesabını doğrulayamadık.',
+    unavailable: 'Silme servisi şu anda kullanılamıyor. Lütfen gunce.destek@gmail.com adresine "Hesap Silme" konulu e-posta gönder — talebin en geç 7 gün içinde işlenir.',
+    generic: 'Silme tamamlanamadı. Lütfen tekrar dene ya da gunce.destek@gmail.com adresine yaz.',
+    done: 'Hesabın ve sunucudaki tüm verilerin silindi. Bu e-posta adresiyle artık giriş yapılamaz. Google Play aboneliğin varsa Play Store → Ödemeler ve abonelikler bölümünden iptal etmeyi unutma.',
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    resetMsgs()
+    const email = document.getElementById('email').value.trim()
+    const password = document.getElementById('password').value
+    if (!email || !password) { showErr(TR.fillBoth); return }
+
+    btn.disabled = true
+    btn.textContent = 'Doğrulanıyor…'
+    try {
+      /* 1) Hesap doğrulama */
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+      if (error || !data?.session) { showErr(TR.badCreds); return }
+
+      /* 2) Gerçek silme isteği */
+      btn.textContent = 'Silme talebi işleniyor…'
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/delete-account`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${data.session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+
+      /* 3) Dürüst sonuç — yalnızca gerçek 200 {ok:true} başarıdır */
+      if (res.ok) {
+        const body = await res.json().catch(() => null)
+        if (body?.ok === true) {
+          await supabase.auth.signOut().catch(() => undefined)
+          showOkay(TR.done)
+          form.reset()
+          return
+        }
+      }
+      if (res.status === 401) showErr(TR.badCreds)
+      else if (res.status === 404 || res.status === 501 || res.status === 503) showErr(TR.unavailable)
+      else showErr(TR.generic)
+    } catch (networkErr) {
+      /* çevrimdışı / DNS / CORS — sahte başarı YOK */
+      showErr(TR.unavailable)
+    } finally {
+      btn.disabled = false
+      btn.textContent = 'Hesap silme talebi gönder'
+    }
+  })
+</script>
+</body>
+</html>
